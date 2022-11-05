@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="lab.SwimmingPoolTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2022-11-05T06:22:09" hostname="MPB-2019" time="0.047">
+<testsuite name="lab.SwimmingPoolTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2022-11-05T13:19:23" hostname="MPB-2019" time="0.052">
   <properties/>
-  <testcase name="[1] Monday, 70" classname="lab.SwimmingPoolTest" time="0.026"/>
+  <testcase name="[1] Monday, 70" classname="lab.SwimmingPoolTest" time="0.029"/>
   <testcase name="[2] Sunday, 70" classname="lab.SwimmingPoolTest" time="0.001"/>
   <testcase name="[3] Sunday, 90" classname="lab.SwimmingPoolTest" time="0.001"/>
   <testcase name="Old man test" classname="lab.SwimmingPoolTest" time="0.001"/>
-  <testcase name="Working day- assertAll test" classname="lab.SwimmingPoolTest" time="0.002"/>
+  <testcase name="Working day- assertAll test" classname="lab.SwimmingPoolTest" time="0.003"/>
   <testcase name="[1] Sunday" classname="lab.SwimmingPoolTest" time="0.001"/>
-  <testcase name="[2] Saturday" classname="lab.SwimmingPoolTest" time="0.0"/>
+  <testcase name="[2] Saturday" classname="lab.SwimmingPoolTest" time="0.001"/>
   <testcase name="[1] 70" classname="lab.SwimmingPoolTest" time="0.001"/>
   <testcase name="[2] 71" classname="lab.SwimmingPoolTest" time="0.001"/>
   <testcase name="[3] 73" classname="lab.SwimmingPoolTest" time="0.0"/>

@@ -42,36 +42,14 @@ class MyDateTest {
         "1900, 11, 20, 323",
         "1900, 12, 20, 353"
     })	
-    void testDiff1900_same_year(int y, int m, int d, int diff) {
-        int _diff = MyDate.diff1900(new MyDate(y, m, d));
-        assertEquals(diff, _diff);
+    void testDiff1900_1_1_same_year(int y, int m, int d, int diff) {
+        int _diff2 = MyDate.diffTo1900_1_1(new MyDate(y, m, d));
+        assertEquals(diff, _diff2);
 	}
 
-    /**
-        檢測距離當年度的第一天的天數是否正確
-    */
-	@ParameterizedTest
-    @CsvSource({
-        "1900, 1, 20, 19",
-        "1900, 2, 20, 50",
-        "1900, 3, 20, 78",
-        "1900, 4, 20, 109",
-        "1900, 5, 20, 139",
-        "1900, 6, 20, 170",
-        "1900, 7, 20, 200",
-        "1900, 8, 20, 231",
-        "1900, 9, 20, 262",
-        "1900, 10, 20, 292",
-        "1900, 11, 20, 323",
-        "1900, 12, 20, 353"
-    })	
-    void testDiff11_same_year(int y, int m, int d, int diff) {
-        int _diff = MyDate.diff11(new MyDate(y, m, d));
-        assertEquals(diff, _diff);
-	}
 
     /**
-        檢測距離 1900/1/ 天數是否正確，跨年度。
+        檢測距離 1900/1/1 天數是否正確，跨年度。
         套用 Java ChronoUnit 的結果來作為正確天數的依據。
     */
     @ParameterizedTest
@@ -90,8 +68,8 @@ class MyDateTest {
         "2020, 2, 29",
         "2020, 3, 1",
     })	
-    void testDiff_cross_year(int y, int m, int d) {
-        long _diff = MyDate.diff1900(new MyDate(y, m, d));
+    void testDiffTo1900_1_1(int y, int m, int d) {
+        long _diff = MyDate.diffTo1900_1_1(new MyDate(y, m, d));
         long java_date = ChronoUnit.DAYS.between(LocalDate.of(1900, 1, 1), LocalDate.of(y,m,d));
         System.out.println(_diff);
 
@@ -113,6 +91,16 @@ class MyDateTest {
         String dow = (new MyDate(y, m, d)).dayOfWeek();
         assertEquals(expectedDOW, dow);
 	}
+
+    @ParameterizedTest
+    @CsvSource({
+        "1900, 1, 2, 2",
+        "1900, 2, 1, 32",
+    })	
+    void testDayOfYear(int y, int m, int d, int doy) {
+        MyDate md = new MyDate(y, m, d);
+        assertEquals(doy, MyDate.daysOfYear(md));
+    }
 
 
     /**
@@ -138,16 +126,15 @@ class MyDateTest {
     */
     @ParameterizedTest
     @CsvSource({
-        "1901, 1, 1, 'Tuesday' ",
+        "1901, 1, 1, 'Wednesday' ",
         "2022, 11, 5, 'Sunday' ",
     })	
-    void testTomorrowDay(int y, int m, int d) {
-        MyDate today = new MyDate(y, m, d);
-        MyDate expected_tomorrow = new MyDate(y2, m2, d2);        
-        assertEquals(expected_tomorrow.toString(), today.tomorrow().toString());
+    void testTomorrowDayOfWeek(int y, int m, int d, String expectedDOW) {
+        MyDate md = new MyDate(y, m, d);
+        assertEquals(expectedDOW, md.tomorrowDayOfWeek());
 	}
 
-
+    /** Test the usage of LocalDate and ChronoUnit */
     @Test
     @Disabled
     void testJavaAPI() {
@@ -157,7 +144,5 @@ class MyDateTest {
 
         System.out.println(daysBetween);
     }
-
-
 }
 

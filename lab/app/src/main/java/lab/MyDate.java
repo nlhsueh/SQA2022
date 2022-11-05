@@ -32,7 +32,7 @@ public class MyDate {
     public String dayOfWeek() {
         String dayOfWeekString [] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Satursday", "Sunday"};
 
-        int diffTo1900 = diff1900(this);
+        int diffTo1900 = diffTo1900_1_1(this);
         int r = 1 + (diffTo1900 % 7); // 1 becase 1900/1/1 is Monday
         assert r<=7: "day of week error!!"; 
 
@@ -71,64 +71,58 @@ public class MyDate {
     }
 
     /**
-        因為我們知道 1900/1/1 是星期一，所以用計算日期和 1900/1/1 的天數差，
-        再來推算星期。
+        距離 1900/1/1 的天數
+        = 之前年的天數 + 該年度第幾天 - 1
      */
-    public static int diff1900 (MyDate d) {
-        int diff=0;
-        if (d.y == 1900) {
-            diff = diff11(d);
+    public static int diffTo1900_1_1 (MyDate d) {
+        int daysTo1900_1_1 = 0;
+        for (int i=1900; i< d.y; i++) {
+            daysTo1900_1_1 += year_days(i);
         }
-        else if (d.y > 1900) {
-            diff = 365-1;
-            for (int i=1901; i< d.y; i++) {
-                diff += year_days(i);
-            }
-            diff += diff11(d) + 1;
-        }
-        return diff;
+        daysTo1900_1_1 += daysOfYear(d);
+        return daysTo1900_1_1 - 1;
     }
 
-    /**
-        距離該年度 1/1 的天數。
-        例如 d 為 2020/4/5，會回傳 4/5-1/1 的天數
+    /** 
+        該年第幾天
      */
-    public static int diff11 (MyDate d) {
-        int diff = 0;
-        if (d.m == 1) 
-            diff += (d.d - 1);
-        else {
-            diff += (31-1);
-            for (int i=2; i<d.m; i++) {
-                if (isLeapYear(d.y)) 
-                    diff += leapDays[i-1];                    
-                else diff += normalDays[i-1];     
-            }
-            diff += d.d;
-        }    
-        return diff;
+    public static int daysOfYear (MyDate d) {
+        int doy = 0;
+        for (int i=1; i<d.m; i++) {
+            if (isLeapYear(d.y)) 
+                doy += leapDays[i-1];                    
+            else doy += normalDays[i-1];     
+        }
+        doy += d.d;
+        return doy;
     }        
 
+    /** 該年有幾天 */
     public static int year_days(int y) {
         return isLeapYear(y) ? 366 : 365;
     }
 
+    /** 是否為閏年 */
     public static boolean isLeapYear(int y) {
         return (y%400 == 0) || (y%4==0 && y%100 != 0);
     }
 
+    /** 轉為整數的月數 1.. 12 */
     public static int to_m(String month) {
         return Integer.parseInt(month);
     }
 
+    /** 轉為 Jan, Feb 等英文的月 */
     public static String to_Month(int m) {
         return String.valueOf(m); 
     }
     
-    public String tomorrowDay() {
-        return this.tomorrow().dayOfWeek;
+    /** 明天星期幾 */
+    public String tomorrowDayOfWeek() {
+        return this.tomorrow().dayOfWeek();
     }
 
+    /** 印出本日期, 如 2000-12-1 */
     public String toString() {
         String[] r = {String.valueOf(y), String.valueOf(m), String.valueOf(d)};
         return StringUtils.join(r, "-");
