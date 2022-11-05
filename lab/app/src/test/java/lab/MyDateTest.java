@@ -15,12 +15,18 @@ import java.time.temporal.ChronoUnit;
 
 class MyDateTest {
 
+    /**
+        檢測日期的 toString 格式    
+     */
 	@Test
 	void testToString() {
         MyDate d = new MyDate(2000, "1", 20);
         assertEquals("2000-1-20", d.toString());
 	}
 
+    /**
+        檢測距離 1900/1/1 的天數是否正確（同年度)
+    */
 	@ParameterizedTest
     @CsvSource({
         "1900, 1, 20, 19",
@@ -41,6 +47,9 @@ class MyDateTest {
         assertEquals(diff, _diff);
 	}
 
+    /**
+        檢測距離當年度的第一天的天數是否正確
+    */
 	@ParameterizedTest
     @CsvSource({
         "1900, 1, 20, 19",
@@ -61,6 +70,10 @@ class MyDateTest {
         assertEquals(diff, _diff);
 	}
 
+    /**
+        檢測距離 1900/1/ 天數是否正確，跨年度。
+        套用 Java ChronoUnit 的結果來作為正確天數的依據。
+    */
     @ParameterizedTest
     @CsvSource({
         "1901, 1, 1",
@@ -72,14 +85,39 @@ class MyDateTest {
         "1904, 1, 1",
         "1905, 10, 1",
         "2000, 1, 1",
+        "2015, 7, 5",
+        "2020, 2, 28",
+        "2020, 2, 29",
+        "2020, 3, 1",
     })	
     void testDiff_cross_year(int y, int m, int d) {
         long _diff = MyDate.diff1900(new MyDate(y, m, d));
         long java_date = ChronoUnit.DAYS.between(LocalDate.of(1900, 1, 1), LocalDate.of(y,m,d));
+        System.out.println(_diff);
 
         assertEquals(java_date, _diff);
 	}
 
+    /**
+        檢測星期是否正確
+    */
+    @ParameterizedTest
+    @CsvSource({
+        "1900, 1, 2, 'Tuesday' ",
+        "2022, 11, 5, 'Satursday' ",
+        "2020, 11, 5, 'Thursday' ",
+        "2020, 7, 5, 'Sunday' ",
+        "2019, 7, 5, 'Friday' ",
+    })	
+    void testDayOfWeek(int y, int m, int d, String expectedDOW) {
+        String dow = (new MyDate(y, m, d)).dayOfWeek();
+        assertEquals(expectedDOW, dow);
+	}
+
+
+    /**
+        檢測明天的日期
+    */
     @ParameterizedTest
     @CsvSource({
         "1901, 1, 1, 1901, 1, 2",
@@ -95,7 +133,23 @@ class MyDateTest {
         assertEquals(expected_tomorrow.toString(), today.tomorrow().toString());
 	}
 
+    /**
+        檢測明天的星期
+    */
+    @ParameterizedTest
+    @CsvSource({
+        "1901, 1, 1, 'Tuesday' ",
+        "2022, 11, 5, 'Sunday' ",
+    })	
+    void testTomorrowDay(int y, int m, int d) {
+        MyDate today = new MyDate(y, m, d);
+        MyDate expected_tomorrow = new MyDate(y2, m2, d2);        
+        assertEquals(expected_tomorrow.toString(), today.tomorrow().toString());
+	}
+
+
     @Test
+    @Disabled
     void testJavaAPI() {
         LocalDate d1 = LocalDate.of(1900, 1, 1);
         LocalDate d2 = LocalDate.of(1901, 1, 1);
