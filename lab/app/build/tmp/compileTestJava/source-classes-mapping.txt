@@ -2,3 +2,5 @@ lab/PlusTest.java
  lab.PlusTest
 lab/SwimmingPoolTest.java
  lab.SwimmingPoolTest
+lab/MyDateTest.java
+ lab.MyDateTest
