@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Movie.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">exam</a> &gt; <span class="el_source">Movie.java</span></div><h1>Movie.java</h1><pre class="source lang-java linenums">/**
+
+以下是一個全天電影院收費系統的規則: (1) 一般票價 200 (2) 12-18（ 含）歲學生非假日一般時段 打八折 (3) 非假日早場 4:00-10:00 AM 一般人打七折，學生票只打九折。(4) 假日（週六日）一律250 元。測試應該包含邊界測試的概念，請說明你的邊界測試策略。
+
+請以文字說明測試的重點，並以表格的方式描述測試案例 
+撰寫程式碼並用JUnit 進行完整測試，並說明測試結果與你的完成度。
+ */
+
+package exam;
+
+import java.util.Arrays;
+
+<span class="fc" id="L13">public class Movie {</span>
+	
+	public double price(String day, int age, int time) {
+<span class="fc" id="L16">		double price = 0;</span>
+<span class="fc" id="L17">		String [] working = {&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;}; </span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">		boolean isWeekend = !Arrays.asList(working).contains(day);</span>
+<span class="pc bpc" id="L19" title="1 of 4 branches missed.">        boolean isMorning = (time&lt;=10) &amp;&amp; (time&gt;=4);</span>
+<span class="fc bfc" id="L20" title="All 4 branches covered.">        boolean isStudent = (age&lt;=18) &amp;&amp; (age&gt;=12);</span>
+
+<span class="fc bfc" id="L22" title="All 2 branches covered.">		if (isWeekend) {</span>
+<span class="fc" id="L23">			price = 250;</span>
+		}
+<span class="fc bfc" id="L25" title="All 2 branches covered.">		else if (isStudent) {</span>
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">			if (isMorning) {</span>
+<span class="fc" id="L27">				price = 200*0.9;</span>
+			}
+<span class="nc" id="L29">			else price = 200*0.8;</span>
+		}
+<span class="fc bfc" id="L31" title="All 2 branches covered.">		else if (isMorning) {</span>
+<span class="fc" id="L32">				price = 200*0.7;</span>
+		}
+<span class="fc" id="L34">		else price = 200;</span>
+		
+<span class="fc" id="L36">		return price;	 </span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

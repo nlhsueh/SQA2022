@@ -8,3 +8,5 @@ lab/MyDateTest.java
  lab.MyDateTest
 lab/IntersectTest.java
  lab.IntersectTest
+exam/StockTest.java
+ exam.StockTest

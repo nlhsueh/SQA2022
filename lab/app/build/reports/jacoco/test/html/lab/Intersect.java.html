@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Intersect.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">lab</a> &gt; <span class="el_source">Intersect.java</span></div><h1>Intersect.java</h1><pre class="source lang-java linenums">package lab;
+
+<span class="nc" id="L3">public class Intersect {</span>
+
+    // public static double [] intersect(int[] line1, int[] line2) throws Exception {
+
+    //     double r =0;
+    //     if (line1.length != 3 || line2.length != 3) {
+    //         throw new Exception(&quot;Wrong formula&quot;);
+    //     }
+
+        // int a1 = line1[0], b1=line1[1], c1=line1[2];
+        // int a2 = line2[0], b2=line2[1], c2=line2[2];
+        // double slope1, slope2;
+        // if (b1 != 0) slope1 = a1/b1;
+        // if (b2 != 0) slope2 = a2/b2;
+        
+        
+        // if (a1==0) {
+        //     if (a2==0);
+        // }
+        // int lcm = getLCM(a1, a2);
+        // int rate = lcm/a1;
+
+        // int b1 = rate * line1[1];
+        // int b2 = rate * line2[1];
+
+        // int c1 = rate * line1[2];
+        // int c2 = rate * line2[2];
+
+        // double cor_y = (c1-c2)/(b1-b2);
+        // double cor_x = (c1 - b1*cor_y)/(a1*rate);
+        // double[] r = {cor_x, cor_y};
+    //     return r;       
+    // }
+
+    public static int getLCM(int x, int y) {
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        int max = x&gt;y ? x : y;</span>
+<span class="nc" id="L39">        int r=1;</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        for (int i=max; i &lt;= x*y; i++) {</span>
+<span class="nc" id="L41">            System.out.println(i);</span>
+<span class="nc bnc" id="L42" title="All 4 branches missed.">            if (i%x==0 &amp;&amp; i%y==0) {</span>
+<span class="nc" id="L43">                r = i;</span>
+<span class="nc" id="L44">                break;</span>
+            }
+        }
+<span class="nc" id="L47">        return r;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,10 +1,12 @@
+lab/Intersect.java
+ lab.Intersect
 lab/MyDate.java
  lab.MyDate
 lab/Plus.java
  lab.Plus
 lab/SwimmingPool.java
  lab.SwimmingPool
-lab/Intersect.java
- lab.Intersect
+exam/Stock.java
+ exam.Stock
 exam/Movie.java
  exam.Movie

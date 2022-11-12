@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Stock.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">exam</a> &gt; <span class="el_source">Stock.java</span></div><h1>Stock.java</h1><pre class="source lang-java linenums">
+/**
+2020-2021 年台灣股市大漲，小明分別買進若干的台積電股票。以下程式 profit 會計算小明的獲利，其中 currentPrice 表示台積電目前的股價; buy[] 表示過去買台積電的股價，例如 {200, 400, 450, 600} 表示共買了四張的股票。 另，股價應該在 200-1000 之間，若超出範圍請拋出例外。
+
+ double profit(double currentPrice, double buy[])
+
+請以文字模式說明測試的重點，並以類表格的方式描述測試案例 
+撰寫程式碼並用JUnit 進行完整測試，並說明測試結果與你的完成度
+ */
+
+package exam;
+
+import java.util.Arrays;
+
+<span class="fc" id="L15">public class Stock {</span>
+	
+	public double profit(double currentPrice, double buy[]) throws Exception {
+<span class="fc" id="L18">        double p=0;</span>
+
+<span class="fc bfc" id="L20" title="All 4 branches covered.">        if (!(currentPrice &lt;= 1000 &amp;&amp; currentPrice &gt;= 200))</span>
+<span class="fc" id="L21">            throw new Exception(&quot;Over price&quot;);</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        for (double b: buy) {</span>
+<span class="fc bfc" id="L23" title="All 4 branches covered.">            if (!(b &lt;= 1000 &amp;&amp; b &gt;= 200)) </span>
+<span class="fc" id="L24">                throw new Exception(&quot;Over price&quot;);</span>
+<span class="fc" id="L25">            p += (currentPrice - b);</span>
+        }
+
+<span class="fc" id="L28">        return p*1000;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

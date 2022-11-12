@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MyDate.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">lab</a> &gt; <span class="el_source">MyDate.java</span></div><h1>MyDate.java</h1><pre class="source lang-java linenums">package lab;
+
+import java.util.Arrays;
+import org.apache.commons.lang3.StringUtils;
+
+<span class="pc bpc" id="L6" title="1 of 2 branches missed.">public class MyDate {</span>
+
+    int y, m, d;
+    String month; //January, etc.
+<span class="fc" id="L10">    static Integer [] solarMonth = {1, 3, 5, 7, 8, 10, 12};</span>
+<span class="fc" id="L11">    static Integer [] lunarMonth = {4, 6, 9, 11};</span>
+<span class="fc" id="L12">    static int [] leapDays = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};</span>
+<span class="fc" id="L13">    static int [] normalDays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};</span>
+    
+<span class="fc" id="L15">    public MyDate(int y, String m, int d) {</span>
+<span class="fc" id="L16">        this.y = y;</span>
+<span class="fc" id="L17">        this.month = m;</span>
+<span class="fc" id="L18">        this.m = to_m(month);</span>
+<span class="fc" id="L19">        this.d = d;</span>
+<span class="fc" id="L20">    }</span>
+
+<span class="fc" id="L22">    public MyDate(int y, int m, int d) {</span>
+<span class="fc" id="L23">        this.y = y;</span>
+<span class="fc" id="L24">        this.m = m;</span>
+<span class="fc" id="L25">        this.d = d;</span>
+<span class="fc" id="L26">    }</span>
+
+    /**
+        計算星期
+        只要知道這天和 1900 的日期差即可推算。我們知道 1900/1/1 是 Monday。
+     */
+    public String dayOfWeek() {
+<span class="fc" id="L33">        String dayOfWeekString [] = {&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Satursday&quot;, &quot;Sunday&quot;};</span>
+
+<span class="fc" id="L35">        int diffTo1900 = diffTo1900_1_1(this);</span>
+<span class="fc" id="L36">        int r = 1 + (diffTo1900 % 7); // 1 becase 1900/1/1 is Monday</span>
+<span class="pc bpc" id="L37" title="2 of 4 branches missed.">        assert r&lt;=7: &quot;day of week error!!&quot;; </span>
+
+<span class="fc" id="L39">        return dayOfWeekString[r-1];</span>
+    }
+
+    /** 
+        計算明天
+        原則上都是 d++, 但遇到月底的時候需要 reset,
+        要特別注意閏二月和十二月
+     */
+    public MyDate tomorrow() {
+<span class="fc" id="L48">        int _y = y;</span>
+<span class="fc" id="L49">        int _d = d;</span>
+<span class="fc" id="L50">        int _m = m;</span>
+
+<span class="pc bpc" id="L52" title="3 of 6 branches missed.">        boolean isLeap = (y%400 == 0) || (y%4==0 &amp;&amp; y%100 != 0); // 閏年</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        boolean isFeb = (m == 2);</span>
+<span class="fc" id="L54">        boolean isSolar = Arrays.asList(solarMonth).contains(m); // 大月</span>
+<span class="fc" id="L55">        boolean isLunar = Arrays.asList(lunarMonth).contains(m); // 小月</span>
+
+<span class="pc bpc" id="L57" title="1 of 6 branches missed.">        boolean isNormal228 = !isLeap &amp;&amp; isFeb &amp;&amp; d==28;    // 平年二月底</span>
+<span class="pc bpc" id="L58" title="1 of 6 branches missed.">        boolean isLeap229 = isLeap &amp;&amp; isFeb &amp;&amp; d==29;       // 閏年二月底</span>
+<span class="pc bpc" id="L59" title="1 of 12 branches missed.">        boolean isEndOfMonth = (isSolar &amp;&amp; d == 31) || (isLunar &amp;&amp; d == 30) || isNormal228 || isLeap229;    // 月底</span>
+
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if (isEndOfMonth) {</span>
+<span class="fc" id="L62">            _m++; _d=1; // advanced to next month</span>
+        }
+<span class="fc" id="L64">        else _d++;</span>
+
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        if (_m==13) {   // case of 12/31</span>
+<span class="fc" id="L67">            _m=1; _y++; // advanced to next year</span>
+        }    
+
+<span class="fc" id="L70">        return new MyDate(_y, _m, _d);</span>
+    }
+
+    /**
+        距離 1900/1/1 的天數
+        = 之前年的天數 + 該年度第幾天 - 1
+     */
+    public static int diffTo1900_1_1 (MyDate d) {
+<span class="fc" id="L78">        int daysTo1900_1_1 = 0;</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        for (int i=1900; i&lt; d.y; i++) {</span>
+<span class="fc" id="L80">            daysTo1900_1_1 += year_days(i);</span>
+        }
+<span class="fc" id="L82">        daysTo1900_1_1 += daysOfYear(d);</span>
+<span class="fc" id="L83">        return daysTo1900_1_1 - 1;</span>
+    }
+
+    /** 
+        該年第幾天
+     */
+    public static int daysOfYear (MyDate d) {
+<span class="fc" id="L90">        int doy = 0;</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        for (int i=1; i&lt;d.m; i++) {</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">            if (isLeapYear(d.y)) </span>
+<span class="fc" id="L93">                doy += leapDays[i-1];                    </span>
+<span class="fc" id="L94">            else doy += normalDays[i-1];     </span>
+        }
+<span class="fc" id="L96">        doy += d.d;</span>
+<span class="fc" id="L97">        return doy;</span>
+    }        
+
+    /** 該年有幾天 */
+    public static int year_days(int y) {
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        return isLeapYear(y) ? 366 : 365;</span>
+    }
+
+    /** 是否為閏年 */
+    public static boolean isLeapYear(int y) {
+<span class="fc bfc" id="L107" title="All 6 branches covered.">        return (y%400 == 0) || (y%4==0 &amp;&amp; y%100 != 0);</span>
+    }
+
+    /** 轉為整數的月數 1.. 12 */
+    public static int to_m(String month) {
+<span class="fc" id="L112">        return Integer.parseInt(month);</span>
+    }
+
+    /** 轉為 Jan, Feb 等英文的月 */
+    public static String to_Month(int m) {
+<span class="nc" id="L117">        return String.valueOf(m); </span>
+    }
+    
+    /** 明天星期幾 */
+    public String tomorrowDayOfWeek() {
+<span class="fc" id="L122">        return this.tomorrow().dayOfWeek();</span>
+    }
+
+    /** 印出本日期, 如 2000-12-1 */
+    public String toString() {
+<span class="fc" id="L127">        String[] r = {String.valueOf(y), String.valueOf(m), String.valueOf(d)};</span>
+<span class="fc" id="L128">        return StringUtils.join(r, &quot;-&quot;);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
