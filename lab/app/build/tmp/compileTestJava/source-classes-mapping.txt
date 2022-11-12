@@ -1,6 +1,10 @@
+exam/MovieTest.java
+ exam.MovieTest
 lab/PlusTest.java
  lab.PlusTest
 lab/SwimmingPoolTest.java
  lab.SwimmingPoolTest
 lab/MyDateTest.java
  lab.MyDateTest
+lab/IntersectTest.java
+ lab.IntersectTest
