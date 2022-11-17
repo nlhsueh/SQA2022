@@ -10,3 +10,5 @@ exam/Stock.java
  exam.Stock
 exam/Movie.java
  exam.Movie
+lab/Person.java
+ lab.Person

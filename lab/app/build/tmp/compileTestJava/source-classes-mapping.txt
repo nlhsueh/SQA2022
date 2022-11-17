@@ -1,12 +1,14 @@
 exam/MovieTest.java
  exam.MovieTest
-lab/PlusTest.java
- lab.PlusTest
+lab/IntersectTest.java
+ lab.IntersectTest
 lab/SwimmingPoolTest.java
  lab.SwimmingPoolTest
 lab/MyDateTest.java
  lab.MyDateTest
-lab/IntersectTest.java
- lab.IntersectTest
 exam/StockTest.java
  exam.StockTest
+lab/PersonTest.java
+ lab.PersonTest
+lab/PlusTest.java
+ lab.PlusTest
