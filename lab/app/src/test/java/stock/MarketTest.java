@@ -8,8 +8,6 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 public class MarketTest {
-   App app;
-   
    Market market;   
    StockService stockService;
           

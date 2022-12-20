@@ -16,8 +16,6 @@ lab/BinarySearch.java
  lab.BinarySearch
 exam/Stock.java
  exam.Stock
-stock/App.java
- stock.App
 stock/StockService.java
  stock.StockService
 lab/MyDate.java
@@ -28,7 +26,5 @@ lab/SwimmingPool.java
  lab.SwimmingPool
 lab/integrationdemo/GradeDBStub.java
  lab.integrationdemo.GradeDBStub
-lab/Intersect.java
- lab.Intersect
 stock/Market.java
  stock.Market

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="exam.StockTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-12-20T05:37:54" hostname="MPB-2019" time="0.002">
+<testsuite name="exam.StockTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-12-20T07:09:39" hostname="nlhde-iMac.local" time="0.002">
   <properties/>
   <testcase name="testStock()" classname="exam.StockTest" time="0.001"/>
   <testcase name="testStockException()" classname="exam.StockTest" time="0.001"/>

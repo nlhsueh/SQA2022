@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="stock.MarketTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-12-20T05:37:54" hostname="MPB-2019" time="0.386">
+<testsuite name="stock.MarketTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-12-20T07:09:39" hostname="nlhde-iMac.local" time="0.499">
   <properties/>
-  <testcase name="testMarketValue()" classname="stock.MarketTest" time="0.385"/>
+  <testcase name="testMarketValue()" classname="stock.MarketTest" time="0.498"/>
   <testcase name="testMarketValue2()" classname="stock.MarketTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
