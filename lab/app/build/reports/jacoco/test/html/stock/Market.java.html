@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Market.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">stock</a> &gt; <span class="el_source">Market.java</span></div><h1>Market.java</h1><pre class="source lang-java linenums">package stock;
+
+import java.util.List;
+
+<span class="fc" id="L5">public class Market {</span>
+   private StockService stockService;
+   private List&lt;Stock&gt; stocks;
+
+   public StockService getStockService() {
+<span class="nc" id="L10">      return stockService;</span>
+   }
+   
+   public void setStockService(StockService stockService) {
+<span class="fc" id="L14">      this.stockService = stockService;</span>
+<span class="fc" id="L15">   }</span>
+
+   public List&lt;Stock&gt; getStocks() {
+<span class="nc" id="L18">      return stocks;</span>
+   }
+
+   public void setStocks(List&lt;Stock&gt; stocks) {
+<span class="fc" id="L22">      this.stocks = stocks;</span>
+<span class="fc" id="L23">   }</span>
+
+   //計算市值
+   public double getMarketValue(){
+<span class="fc" id="L27">      double marketValue = 0.0;      </span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">      for(Stock stock:stocks){</span>
+<span class="fc" id="L29">         marketValue += stockService.getPrice(stock) * stock.getQuantity();</span>
+<span class="fc" id="L30">      }</span>
+<span class="fc" id="L31">      return marketValue;</span>
+   }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

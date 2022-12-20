@@ -51,7 +51,7 @@ class PlusTest {
         assertEquals(10, p.plus(-1,11));
 	}	
 
-	void test_positive_plus_negative() {
+	void test_positive_plus_negative2() {
         Plus p = new Plus();
         assertEquals(10, p.plus(-1,11));
 	}	

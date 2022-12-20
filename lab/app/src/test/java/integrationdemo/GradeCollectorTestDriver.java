@@ -1,9 +1,8 @@
 package lab.integrationdemo;
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.Assert.*;
-
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /*
  * This demo program is to test the module "GradeCollector"
@@ -15,7 +14,7 @@ public class GradeCollectorTestDriver {
 	GradeCollector collector;
 
 	// setup a default DB and AverageComputer
-	@Before
+	@BeforeEach
 	public void setup() {
 		// GradeDBStub is a stub module used by GradeCollector
 		int grade[][] = { { 50, 50, 50, 50 }, { 100, 100, 100, 100 } };
@@ -40,32 +39,23 @@ public class GradeCollectorTestDriver {
 	}
 
 	// error check: if the program can check invalid classID
-	@Test(expected = java.lang.Exception.class)
+	@Test
 	public void test2() throws Exception {
-		try {
-			// 12345 is a invalid classID
-			double g[] = collector.getGrade(12345);
-		} catch (Exception e) {
-			assertEquals("Invalid class ID", e.getMessage());
-			// make the @Test (expected ...) happy
-			throw new Exception();
-		}
+
+		Exception e;
+		assertThrows(Exception.class, ()-> collector.getGrade(12345));
 	}
 
 	// error check: if the program can check invalid grade?
-	@Test(expected = java.lang.Exception.class)
+	@Test
 	public void test3() throws Exception {
 		// -50 is an invalid grade
 		int grade2[][] = { { 50, 50, -50, 50 }, { 100, 100, 100, 100 } };
 		db.setGrade(grade2);
 
-		try {
-			double g[] = collector.getGrade(1234);
-		} catch (Exception e) {
-			assertEquals("Invalid grade", e.getMessage());
-			// make the @Test (expected ...) happy
-			throw new Exception();
-		}
+		Exception e;
+		assertThrows(Exception.class, ()-> collector.getGrade(12345));
+
 	}
 
 }

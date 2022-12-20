@@ -1,14 +1,34 @@
-lab/Intersect.java
- lab.Intersect
-lab/MyDate.java
- lab.MyDate
+stock/Stock.java
+ stock.Stock
 lab/Plus.java
  lab.Plus
-lab/SwimmingPool.java
- lab.SwimmingPool
-exam/Stock.java
- exam.Stock
+lab/integrationdemo/GradeCollector.java
+ lab.integrationdemo.GradeCollector
+lab/integrationdemo/GradeDB.java
+ lab.integrationdemo.GradeDB
 exam/Movie.java
  exam.Movie
+lab/integrationdemo/AverageComputer.java
+ lab.integrationdemo.AverageComputer
 lab/Person.java
  lab.Person
+lab/BinarySearch.java
+ lab.BinarySearch
+exam/Stock.java
+ exam.Stock
+stock/App.java
+ stock.App
+stock/StockService.java
+ stock.StockService
+lab/MyDate.java
+ lab.MyDate
+lab/Average.java
+ lab.Average
+lab/SwimmingPool.java
+ lab.SwimmingPool
+lab/integrationdemo/GradeDBStub.java
+ lab.integrationdemo.GradeDBStub
+lab/Intersect.java
+ lab.Intersect
+stock/Market.java
+ stock.Market

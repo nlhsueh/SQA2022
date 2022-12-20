@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="lab.PlusTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2022-11-17T11:39:33" hostname="MPB-2019" time="0.008">
+<testsuite name="lab.PlusTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2022-12-20T05:37:54" hostname="MPB-2019" time="0.006">
   <properties/>
   <testcase name="Testing positive number + negative number" classname="lab.PlusTest" time="0.0"/>
   <testcase name="test_plus_by_lazy_evaluation()" classname="lab.PlusTest" time="0.001"/>
   <testcase name="test_plus()" classname="lab.PlusTest" time="0.0"/>
   <testcase name="test_plus_by_assertAll()" classname="lab.PlusTest" time="0.001"/>
-  <testcase name="test_timeout()" classname="lab.PlusTest" time="0.003"/>
+  <testcase name="test_timeout()" classname="lab.PlusTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

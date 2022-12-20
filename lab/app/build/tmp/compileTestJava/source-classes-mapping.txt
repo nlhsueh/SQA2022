@@ -1,14 +1,20 @@
 exam/MovieTest.java
  exam.MovieTest
-lab/IntersectTest.java
- lab.IntersectTest
+lab/PlusTest.java
+ lab.PlusTest
+integrationdemo/GradeCollectorTestDriver.java
+ lab.integrationdemo.GradeCollectorTestDriver
 lab/SwimmingPoolTest.java
  lab.SwimmingPoolTest
 lab/MyDateTest.java
  lab.MyDateTest
 exam/StockTest.java
  exam.StockTest
+stock/AppTest.java
+ stock.AppTest
+stock/MarketTest.java
+ stock.MarketTest
 lab/PersonTest.java
  lab.PersonTest
-lab/PlusTest.java
- lab.PlusTest
+lab/IntersectTest.java
+ lab.IntersectTest
